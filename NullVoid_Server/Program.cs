@@ -8,10 +8,6 @@ namespace NullVoid_Server
     static Game.World World = new Game.World(EventLoop);
     static void Main(string[] args)
     {
-      using (var l = World.Entites.Lock())
-      {
-        l.Value.Add(new Game.DemoEntity(EventLoop));
-      }
       EventLoop.Join();
     }
   }

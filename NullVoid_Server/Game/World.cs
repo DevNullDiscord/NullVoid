@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using NullVoid_Lib.Events;
 using NullVoid_Lib.Concurrency;
 using System.Threading;
@@ -20,17 +22,20 @@ namespace NullVoid_Server.Game
       while (!_events.Cancellation.IsCancellationRequested)
       {
         using var l = Entites.Lock();
+        // Do stuff here I guess.
+      }
+    }
+    public List<Entity> GetMatchingEntities(params Type[] types)
+    {
+      List<Entity> entities = new List<Entity>();
+      using (var l = Entites.Lock())
+      {
         foreach (Entity ent in l.Value)
         {
-          if (ent.bDidTick) continue;
-          ent.bDidTick = true;
-          _events.Enqueue(() =>
-          {
-            ent.Tick().Invoke();
-            ent.bDidTick = false;
-          });
+
         }
       }
+      return entities;
     }
   }
 }
