@@ -27,5 +27,14 @@ namespace NullVoid_Lib
       }
       return true;
     }
+    public static List<TReturn> Map<TReturn, TValue>(List<TValue> list, Func<TValue, TReturn> mapper)
+    {
+      List<TReturn> nlist = new List<TReturn>();
+      foreach (TValue v in list)
+      {
+        nlist.Add(mapper.Invoke(v));
+      }
+      return nlist;
+    }
   }
 }

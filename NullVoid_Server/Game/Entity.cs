@@ -7,7 +7,7 @@ namespace NullVoid_Server.Game
   public class Entity : IDisposable
   {
     private EventSystem _events;
-    private ConcurrentList<Component> _components = new ConcurrentList<Component>();
+    public readonly ConcurrentList<Component> Components = new ConcurrentList<Component>();
     public Entity(EventSystem eventSystem)
     {
       _events = eventSystem;
