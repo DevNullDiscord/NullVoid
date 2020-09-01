@@ -36,5 +36,16 @@ namespace NullVoid_Lib
       }
       return nlist;
     }
+    public static bool Find<T>(IEnumerable<T> arr, Predicate<T> predicate, out T element)
+    {
+      foreach (T v in arr)
+      {
+        if (!predicate.Invoke(v)) continue;
+        element = v;
+        return true;
+      }
+      element = default(T);
+      return false;
+    }
   }
 }

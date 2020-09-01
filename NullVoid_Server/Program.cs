@@ -6,7 +6,7 @@ namespace NullVoid_Server
 {
   class TestComponent : Game.Component
   {
-
+    public long tickCounter = 0;
   }
   class TestSystem : Game.ComponentSystem
   {
@@ -14,7 +14,14 @@ namespace NullVoid_Server
     public TestSystem(Game.World world, double interval) : base(world, interval) { }
     public override void Run(List<Game.Entity> entities)
     {
-      Console.WriteLine(entities);
+      foreach (Game.Entity e in entities)
+      {
+        if (e.GetComponent<TestComponent>(out TestComponent c))
+        {
+          Console.WriteLine($"{e}: {c.tickCounter}");
+          c.tickCounter++;
+        }
+      }
     }
   }
   class Program
