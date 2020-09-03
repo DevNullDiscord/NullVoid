@@ -22,7 +22,7 @@ namespace NullVoid_Server.Game
           return comp.GetType() == typeof(T);
         }, out Component c))
         {
-          component = c as T;
+          component = (T)c;
           return true;
         }
       }
